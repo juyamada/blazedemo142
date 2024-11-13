@@ -1,1 +1,6 @@
 ComprarPassagemTest.class
+pages\CommonPage.class
+pages\ReservePage.class
+pages\HomePage.class
+steps\ComprarPassagemBDD.class
+pages\Base.class
