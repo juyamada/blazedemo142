@@ -19,6 +19,9 @@ public class ComprarPassagemPO {
     private HomePage homePage;          // Só eu posso usar a Home
     private ReservePage reservePage;    // Só eu posso usar a Reserve
 
+    private String origem;
+    public String destino;
+
     public ComprarPassagemPO(Base base) {
         this.driver = base.driver;
     }
@@ -34,10 +37,11 @@ public class ComprarPassagemPO {
     }
     @Quando("seleciono a {string} e {string} PO")
     public void seleciono_a_e_po(String origem, String destino) {
+        this.origem = origem;
+        this.destino = destino;
         homePage.selecionarOrigemDestino(origem, destino);
 
         // ToDo: fazer o ajuste do sincronismo
-
     }
     @E("clico no botao Find Flights PO")
     public void clico_no_botao_find_flights_po() {
@@ -48,7 +52,9 @@ public class ComprarPassagemPO {
     @Entao("visualiza a lista de voos PO")
     public void visualiza_a_lista_de_voos_po() {
         assertEquals("BlazeDemo - reserve", reservePage.lerNomeDaGuia());
-        //assertEquals()
+        assertEquals("Flights from " + this.origem + " to " + this.destino + ":",
+        reservePage.lerCabecalhoVoos());
+
         
     
     }
